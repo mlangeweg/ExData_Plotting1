@@ -7,7 +7,7 @@
 rm(list = ls()); gc()
 
 # library statements
-required.packages <- c("dplyr", "ggplot2")
+required.packages <- c("dplyr")
 lapply(required.packages, require, character.only = TRUE)
 
 # Program inputs:
@@ -35,8 +35,7 @@ if(!file.exists("./data/household_power_consumption.txt")) {
   unzip(zipfile="./data/Dataset.zip",exdir="./data")  
 }
 
-#----------------------Process Data------------------------------------------------#
-
+#-------------------------------------------------Process Data------------------------------------------------#
 # Read in data
 powerConsumption.dat <- read.table("./data/household_power_consumption.txt", header=TRUE, sep=";", stringsAsFactors=FALSE, dec=".")
 
@@ -50,7 +49,7 @@ powerConsumptionSub.dat <- powerConsumption.dat %>%
 
 # Convert Global_active_power to numeric
 powerConsumptionSub.dat$Global_active_power <- as.numeric(powerConsumptionSub.dat$Global_active_power)
-#------------------------------Plot 1-------------------------------------------------------#
+#--------------------------------------------------Plot 1-------------------------------------------------------#
 # Histogram of Global_active_power
 png("plot1.png", width=480, height=480)
 hist(powerConsumptionSub.dat$Global_active_power, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)")
