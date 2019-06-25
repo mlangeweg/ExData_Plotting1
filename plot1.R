@@ -42,7 +42,7 @@ powerConsumption.dat <- read.table("./data/household_power_consumption.txt", hea
 # Clean up date
 powerConsumption.dat$Date <- as.Date(powerConsumption.dat$Date, "%d/%m/%Y")
 
-# select Date and Global_active_power ; subset dates: include only 2007-02-01 and 2007-02-02
+# Select Date and Global_active_power ; subset dates: include only 2007-02-01 and 2007-02-02
 powerConsumptionSub.dat <- powerConsumption.dat %>%
   dplyr::select(Date, Global_active_power) %>%
   dplyr::filter(Date == "2007-02-01" | Date == "2007-02-02")
@@ -50,7 +50,7 @@ powerConsumptionSub.dat <- powerConsumption.dat %>%
 # Convert Global_active_power to numeric
 powerConsumptionSub.dat$Global_active_power <- as.numeric(powerConsumptionSub.dat$Global_active_power)
 #--------------------------------------------------Plot 1-------------------------------------------------------#
-# Histogram of Global_active_power
-png("plot1.png", width=480, height=480)
+# Histogram of Global_active_power, save to file
+png("plot1.png", width=480, height=480) # Open connection ; specify path/file name and image dimensions
 hist(powerConsumptionSub.dat$Global_active_power, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)")
 dev.off()
